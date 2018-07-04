@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ship } from '../ship';
-import { SHIPS } from '../mock-ships';
+import { ShipService } from '../ship.service';
 @Component({
   selector: 'app-ships',
   templateUrl: './ships.component.html',
@@ -8,16 +8,22 @@ import { SHIPS } from '../mock-ships';
 })
 export class ShipsComponent implements OnInit {
 
-  ships = SHIPS;
+  ships : Ship[];
 
   selectedShip: Ship;
 
-  constructor() { }
+  constructor(private shipService: ShipService) { }
 
   ngOnInit() {
+    this.getShips();
   }
 
   onSelect(ship: Ship): void {
     this.selectedShip = ship;
+  }
+
+  getShips(): void {
+    this.shipService.getShips()
+    .subscribe(ships => this.ships = ships)
   }
 }
