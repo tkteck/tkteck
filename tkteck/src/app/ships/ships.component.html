@@ -7,14 +7,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedShip">
-
-  <h2>{{ selectedShip.name | uppercase }} 詳細</h2>
-  <div><span>id: </span>{{selectedShip.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedShip.name" placeholder="name">
-    </label>
-  </div>
-
-</div>
+<app-ship-detail [ship]="selectedShip"></app-ship-detail>
